@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerService", "ComputerService\ComputerService.csproj", "{45E574E2-2CC7-4B02-974E-756D746AECA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerService.Database", "ComputerService.Database\ComputerService.Database.csproj", "{88797800-9861-4BF5-B0A5-FF31976B4E62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerService.Models", "ComputerService.Models\ComputerService.Models.csproj", "{752D4D23-B38A-419A-972D-4A2D5AD3B2BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45E574E2-2CC7-4B02-974E-756D746AECA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45E574E2-2CC7-4B02-974E-756D746AECA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45E574E2-2CC7-4B02-974E-756D746AECA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45E574E2-2CC7-4B02-974E-756D746AECA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88797800-9861-4BF5-B0A5-FF31976B4E62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88797800-9861-4BF5-B0A5-FF31976B4E62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88797800-9861-4BF5-B0A5-FF31976B4E62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88797800-9861-4BF5-B0A5-FF31976B4E62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{752D4D23-B38A-419A-972D-4A2D5AD3B2BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{752D4D23-B38A-419A-972D-4A2D5AD3B2BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{752D4D23-B38A-419A-972D-4A2D5AD3B2BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{752D4D23-B38A-419A-972D-4A2D5AD3B2BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
