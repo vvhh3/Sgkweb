@@ -1,0 +1,74 @@
+﻿@page "/Record"
+@using ComputerService.Database
+@using ComputerService.Models
+@using Microsoft.EntityFrameworkCore
+@inject GamerContext ef
+@rendermode InteractiveServer
+<h3>Record</h3>
+
+<EditForm FormName="formAddGamer" Model="_record" OnValidSubmit="@SubmitRecord">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <label>Выберите Игру:</label>
+    <select @bind="_record.GameId">
+        @foreach (var t in ef.Games)
+        {
+            <option value="@t.Id">@t.NameGame</option>
+        }
+    </select>    
+    <label>Выберите пользователя:</label>
+    <select @bind="_record.PlayerId">
+        @foreach (var servise in ef.Gamers)
+        {
+            <option value="@servise.Id">@servise.FirstName</option>
+        }
+    </select>
+    <button type="submit">Зап</button>
+</EditForm>
+
+@* <button @onclick="GetServiseTitle">Записаться</button> *@
+
+<table class="tab">
+    <tr>
+        <th class="tab-td">Игра</th>
+        <th class="tab-td">Игрок</th>
+    </tr>
+    @foreach (var item1 in ef.RecordOfGames.Include(a => a.Game)
+                  .Include(x => x.Player)
+                  .ToList())
+    {
+        <tr>
+            <th class="tab-td">@item1.Game?.NameGame</th>
+            <th class="tab-td">@item1.Player?.FirstName</th>
+        </tr>
+    }
+</table>
+@* @tyt *@
+@* <table class="tab"> *@
+@*     @foreach (var item in ef.Gamers.ToList()) *@
+@*     { *@
+@*     <tr> *@
+@*         <td class="tab-td"></td> *@
+@*     </tr> *@
+@* *@
+@*     } *@
+@* </table> *@
+@code {
+    public string tyt { get; set; }//тут
+
+    private RecordOfGame _record = new RecordOfGame();
+
+    private void SubmitRecord(EditContext args)
+    {        
+        ef.Add(_record);
+        ef.SaveChanges();
+        _record = new RecordOfGame();        
+
+    }
+
+    private void GetServiseTitle()
+    {
+    var selectedOption = ef.Games.FirstOrDefault(o => o.Id == _record.GameId);
+    tyt = selectedOption?.NameGame ?? "Нет выбранного";
+    }
+
+}

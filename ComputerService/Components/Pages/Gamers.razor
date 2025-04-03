@@ -1,0 +1,51 @@
+﻿@page "/Gamers"
+@using ComputerService.Database
+@using ComputerService.Models
+@inject GamerContext ef
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+<h3>Gamer</h3>
+<EditForm FormName="formAddGamer" Model="_gamer" OnValidSubmit="@SubmitGamer">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <p>Ваше Имя</p>
+    <input type="text" @bind-value="_gamer.FirstName"/>
+    <p>Ваше отчество</p>
+    <input type="text" @bind-value="_gamer.MiddleName"/>
+    <p>Ваша фамилия</p>
+    <input type="text" @bind-value="_gamer.LastName"/>
+    <button type="submit">Добавить пользователя</button>
+</EditForm>
+    <button @onclick="On">Записаться</button>
+
+<table class="tab">
+    <tr>
+        <td class="tab-td">Фамилия</td>
+        <td class="tab-td">Имя</td>
+        <td class="tab-td">Отчество</td>
+    </tr>
+    @foreach (var item in ef.Gamers.ToList())
+    {
+        <tr>
+            <td class="tab-td">@item.LastName</td>
+            <td class="tab-td">@item.FirstName</td>
+            <td class="tab-td">@item.MiddleName</td>
+        </tr>
+    }
+</table>
+@code {
+    private Gamer _gamer = new Gamer();
+    public string text { get; set; } = "/Record";
+    
+    public void On()
+    {
+        NavigationManager.NavigateTo(text);
+    }
+    private void SubmitGamer(EditContext args)
+    {
+        ef.Add(_gamer);
+        ef.SaveChanges();
+        _gamer = new Gamer();
+    }
+    
+
+}

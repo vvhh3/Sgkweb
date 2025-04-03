@@ -1,10 +1,13 @@
 using ComputerService.Components;
+using ComputerService.Database;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddDbContext<GamerContext>();
 
 var app = builder.Build();
 
@@ -25,4 +28,9 @@ app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
+using (var ServiceScope = app.Services.CreateScope())
+{
+    var context = ServiceScope.ServiceProvider.GetRequiredService<GamerContext>();
+    context.Database.Migrate();
+}
 app.Run();
