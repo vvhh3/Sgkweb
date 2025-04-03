@@ -15,14 +15,18 @@
 </EditForm>
 
 <table class="tab">
-@foreach (var item in ef.Games.Where(x => x.Price >=10).ToList())
-{
-    <tr>
-        <td class="tab-td">@item.NameGame</td>
-        <td class="tab-td">@item.Price</td>
-    </tr>
-}
+    @foreach (var item in ef.Games.Where(x => x.Price >=10).ToList())
+    {
+        <tr>
+            <td class="tab-td">@item.NameGame</td>
+            <td class="tab-td">@item.Price</td>
+        </tr>
+    }
 </table>
+@foreach (var item in ef.Games.ToList())
+{
+    <a href="@($"/GameEdit/{item.Id}")"> @item.NameGame</a>
+}
 @code {
     public Game _game = new Game();
 
